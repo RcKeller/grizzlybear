@@ -1,23 +1,24 @@
-// import { FOOBAR as Checkin } from '../functions/foobar';
-import { handler as Checkin } from '../functions/inbound-sms.protected';
+import {
+    unlockDoor,
+    getUpcomingAppointments
+} from '../functions/inbound-sms.protected';
 
 describe('jest environment', () => {
-    const getCurrentDate = () => new Date();
-    // test('It mocks dates priperly create new date', () => {
-    //     jest
-    //         .spyOn(global, 'Date')
-    //         .mockImplementationOnce(() => new Date('2022-03-11T02:38:56.817Z') as any);
-    //     expect(getCurrentDate()).toEqual(new Date('2022-03-11T02:38:56.817Z'));
-    // });
-    test('again', () => {
-        expect(getCurrentDate()).toEqual(new Date('2022-03-11T02:38:56.817Z'));
+    test('date mocking', () => {
+        expect(new Date).toEqual(new Date(2022, 2, 1, 9, 30, 0, 0));
+        expect(new Date).toEqual(new Date('2022-03-01T15:30:00.000Z'));
     })
 })
 
+describe('unlockDoor()', () => {
+    it('can unlock the door', async () => {
+        const messages = await unlockDoor([], (e) => e)
+        expect(messages).toContain('[DOOR UNLOCKED]')
+    })
+})
 
-describe('checkin api', () => {
-    it('should work', async () => {
-        expect(typeof Checkin).toBe('function')
-        expect(Checkin).toBe(true)
+describe('getUpcomingAppointments()', () => {
+    it('fetches oauth, then uses jwt to list events', async () => {
+        const events = await getUpcomingAppointments((e) => e)
     })
 })

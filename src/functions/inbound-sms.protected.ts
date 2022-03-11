@@ -28,10 +28,9 @@ const gcpCredentials = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/twilio%40grizzlybearllc.iam.gserviceaccount.com"
 }
 
-
 const calendarId = 'owner@grizzlybear.academy';
 
-const allowList = {
+export const allowList = {
   "3145999859": "Jerry",
   "3146817584": "Grizz",
   "3145993130": "Jeff",
@@ -39,42 +38,22 @@ const allowList = {
   "6084361026": "Jesse"
 }
 
-export const handler: ServerlessFunctionSignature = async function(
-  context: Context,
-  event: Record<string, any>,
-  callback: ServerlessCallback
-) {
-  // Create a new messaging response object
-  const twiml = new Twilio.twiml.MessagingResponse();
-  const fromNumber = event.From.replace('+1', '')
-  let messages = []
+export async function unlockDoor(messages: string[], callback: ServerlessCallback) {
+  try {
+    console.log('TODO: Brivo API call')
+    messages.push(`[DOOR UNLOCKED]`)
+  } catch(err) {
+    messages.push('GRIZZLY BEAR:')
+    messages.push('Our security system is down, please contact the owner directly at (206)-427-3176 to let you in. Sorry!')
+    callback(err);
+  }
+  return messages
+}
 
+export async function getUpcomingAppointments(callback: ServerlessCallback) {
   const enterTime = new Date();
-  enterTime.setSeconds(enterTime.getSeconds() - 60);
-  let exitTime = new Date();
-  exitTime.setSeconds(enterTime.getSeconds() + 60);
   let endTime = new Date()
   endTime.setHours(24,0,0,0); // next midnight
-
-  async function unlockDoor() {
-    try {
-      console.log('TODO: Brivo API call')
-      messages.push(`[DOOR UNLOCKED]`)
-    } catch(err) {
-      messages.push('GRIZZLY BEAR:')
-      messages.push('Our security system is down, please contact the owner directly at (206)-427-3176 to let you in. Sorry!')
-      twiml.message(messages.join('\n'))
-      return callback(null, twiml);
-    }
-  }
-
-  // BYPASS - allow list numbers get an immediate unlock, no API call
-  if (allowList[fromNumber]) {
-    unlockDoor()
-    messages.push(`Keller: Welcome home, ${allowList[fromNumber]}!`)
-    twiml.message(messages.join('\n'))
-    return callback(null, twiml);
-  }
 
   // GOOGLE AUTH
   const jwtClient = new google.auth.JWT(
@@ -87,34 +66,59 @@ export const handler: ServerlessFunctionSignature = async function(
     ]
   );
   const jwtCreds = await jwtClient.authorize()
-    .then(tokens => tokens)
+    .then(tokens => {
+      console.log(tokens)
+      return tokens
+    })
     .catch(err => {
       console.error(err);
       return callback(err);
     });
-  
+
   const cal = google.calendar({version: 'v3', auth: jwtClient});
   const events = await cal.events.list({
       calendarId,
       timeMin: enterTime.toISOString(),
       timeMax: endTime.toISOString(),
       timeZone: 'US/Central',
-      // maxResults: 10,
-      maxResults: 3,
+      maxResults: 3, // 10
       singleEvents: true,
       orderBy: 'startTime',
       fields: 'items(summary,description,start,end)'
     })
-    .then(res => res.data.items)
+    .then(res => {
+      console.log(res.data.items)
+      return res.data.items
+    })
     .then(events => events.filter(e => !!e.description))
     .catch((err) => {
       console.error(err);
       return callback(err);
     });
 
-  const currentEvent = Array.isArray(events) && events[0] ? events[0] : null
+  return events
+}
 
-  console.log(events)
+export const handler: ServerlessFunctionSignature = async function(
+  context: Context,
+  event: Record<string, any>,
+  callback: ServerlessCallback
+) {
+  // Create a new messaging response object
+  const twiml = new Twilio.twiml.MessagingResponse();
+  const fromNumber = event.From.replace('+1', '')
+  let messages = []
+
+  // BYPASS - allow list numbers get an immediate unlock, no API call
+  if (allowList[fromNumber]) {
+    messages = await unlockDoor(messages, callback)
+    messages.push(`Keller: Welcome home, ${allowList[fromNumber]}!`)
+    twiml.message(messages.join('\n'))
+    return callback(null, twiml);
+  }
+
+  const events = await getUpcomingAppointments(callback)
+  const currentEvent = Array.isArray(events) && events[0] ? events[0] : null
 
   // NO UPCOMING EVENTS
   if (!Array.isArray(events) || events.length === 0 || !events[0]) {
@@ -136,13 +140,13 @@ export const handler: ServerlessFunctionSignature = async function(
       messages.push('https://grizzlybear.academy')
     }
   // TOO EARLY TO CHECK IN
-  } else if (moment(enterTime).isBefore(events[0].start.dateTime)) {
+  } else if (moment(new Date()).isBefore(events[0].start.dateTime)) {
     messages.push('GRIZZLY BEAR:')
     messages.push('It\'s almost time, but not quite!')
     messages.push(`Text us again at ${moment(events[0].start.dateTime).format('LT')}`)
   // READY TO CHECK IN
   } else {
-    unlockDoor()
+    messages = await unlockDoor(messages, callback)
     messages.push(`Welcome to Grizzly Bear! The facility is yours until ${moment(events[0].end.dateTime).format('LT')}`)
     messages.push('Please clean any equipment you use before you leave.')
     // IMPORTANT: please send us a photo of the facility 

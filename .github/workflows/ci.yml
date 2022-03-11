@@ -33,6 +33,7 @@ jobs:
           node-version: '12'
           cache: 'yarn'
       - run: yarn install
+      - run: yarn build
       - name: Deploy to Staging with Twilio Serverless
         run: yarn deploy:staging
         env:
@@ -49,6 +50,7 @@ jobs:
   #         node-version: '12'
   #         cache: 'yarn'
   #     - run: yarn install
+  #     - run: yarn build
   #     - name: Deploy to Prod with Twilio Serverless
   #       run: yarn deploy
   #       env:

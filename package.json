@@ -9,8 +9,8 @@
   "scripts": {
     "test": "TZ=\"America/Chicago\" jest",
     "start": "twilio-run --ngrok=\"\" --inspect=\"\"",
-    "deploy": "twilio-run deploy --environment=production",
-    "deploy:staging": "twilio-run deploy --environment=staging",
+    "deploy": "twilio-run deploy --environment=production --username $ACCOUNT_SID --password $AUTH_TOKEN",
+    "deploy:staging": "twilio-run deploy --environment=staging --username $ACCOUNT_SID --password $AUTH_TOKEN",
     "build": "tsc && npm run build:copy-assets",
     "build:copy-assets": "copyfiles src/assets/* src/assets/**/* --up 2 --exclude **/*.ts dist/assets/",
     "prestart": "npm run build",

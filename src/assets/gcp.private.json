@@ -1,4 +1,4 @@
-export default {
+{
     "type": "service_account",
     "project_id": "grizzlybearllc",
     "private_key_id": "14451938ba076e4914f5bbcf7aba7c3dbb3327a5",

@@ -1,5 +1,5 @@
 // import { FOOBAR as Checkin } from '../functions/foobar';
-import { FOOBAR as Checkin } from '../functions/sms/checkin.protected';
+import { handler as Checkin } from '../functions/inbound-sms.protected';
 
 describe('jest environment', () => {
     const getCurrentDate = () => new Date();

@@ -680,14 +680,7 @@
     "@types/qs" "^6.9.4"
     twilio "^3.60.0"
 
-"@twilio-labs/serverless-runtime-types@^1.1":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@twilio-labs/serverless-runtime-types/-/serverless-runtime-types-1.1.8.tgz#38f560af62c6d727b55c2affa7002c63bdcdc223"
-  integrity sha512-vTeeA2NbYT1e6f3ju+wJKq3BRI1RhzDxwU7ctHB+q57G8YtwDwll27HyXhu8N8HnXoLFD1z6rtnQ5UDwNEtzqw==
-  dependencies:
-    twilio "^3.33.0"
-
-"@twilio-labs/serverless-runtime-types@^2.2.2":
+"@twilio-labs/serverless-runtime-types@^2.2", "@twilio-labs/serverless-runtime-types@^2.2.2":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@twilio-labs/serverless-runtime-types/-/serverless-runtime-types-2.2.2.tgz#e10b4cd9c45afa7aaf1161c9fb610f2f6fd3311a"
   integrity sha512-SNV3fFEsp4EcY3qMSFPAq/bcqeTC9wJnWvIri7SjQrsPMyy6viBF5Lhv98jfOiuBUVVSkPIcBmmZ8+lOtda5tw==
@@ -5331,7 +5324,7 @@ twilio@3.29.2:
     scmp "2.0.0"
     xmlbuilder "9.0.1"
 
-twilio@^3.33.0, twilio@^3.56, twilio@^3.60.0:
+twilio@^3.56, twilio@^3.60.0:
   version "3.75.1"
   resolved "https://registry.yarnpkg.com/twilio/-/twilio-3.75.1.tgz#7b9880e31a98c326f17dad3f1778f2a00805d351"
   integrity sha512-q9h8AzJekL2etE4hPiZ3IOz9V6MkrY5d5cLvTra+Xe+jtDjQgarKbMUOYFhVHb/zXycf9qqW+Qk9de0ekgLwrQ==

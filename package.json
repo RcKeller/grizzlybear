@@ -1,5 +1,5 @@
 {
-  "name": "grizzlybear",
+  "name": "grizzlybear2",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,13 +13,17 @@
   },
   "dependencies": {
     "@twilio-labs/serverless-runtime-types": "^1.1",
-    "twilio": "^3.56",
-    "@twilio/runtime-handler": "1.2.2"
+    "@twilio/runtime-handler": "1.2.2",
+    "axios": "^0.26.1",
+    "googleapis": "^96.0.0",
+    "lodash": "^4.17.21",
+    "moment-timezone": "^0.5.34",
+    "twilio": "^3.56"
   },
   "devDependencies": {
+    "copyfiles": "^2.2.0",
     "twilio-run": "^3.4.1",
-    "typescript": "^3.8",
-    "copyfiles": "^2.2.0"
+    "typescript": "^3.8"
   },
   "engines": {
     "node": "12",

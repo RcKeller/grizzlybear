@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "grizzlybearllc",
+    "private_key_id": "14451938ba076e4914f5bbcf7aba7c3dbb3327a5",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC6yIp/0XfY+JpL\nRLZdtK8R3B2StXn2xyZZyLJN/soWfwL2ORb8fRD3X6aFe661SWrrjU0k94Wr/BvM\nuQGde91I6BoSKsnnDzrqfw5XgXtnCoYS4lZsefd8pC1/v1/pBnL4nBMN3+GJ8+Bi\ne+L8AZT6kHJQN/5P4ZwJel6w8lANX4pHMZg9IS7MCNkowwFn6m4D8uMkj4DfgVfk\nUD0ToVx0Q0ot5LKp9MKyVWNHdBLFm9lgnjHomf7Cu50rejH4f+NA9kF+icd32StS\n1E1AD7E5iiur5fPM63CJtFp/BXa14sKXcvwmDo+KWBrBDcxyAndtsiEwJQuqqs4u\nSrUr96hHAgMBAAECgf8vCm2GSh/yXI8GFPc3KRRMoRWOO5972ApkyDRVpjPg1Ni0\nN6ySVhWReuPGM6NuH76Ka/DZbAP67jKY4113TBkDKJm5IgAjMR6KdwmD8tTeA6AR\nck2wEalCutMLgbtVHRTKDrqH3vWCkukK8g2JT0h5S5bc7fnNnbNrNmZsy6d4jeU2\nnjmM20bhSkvIIW9yyPXF5xkTz8tGuGEkTSPpD5FseHggPjKPlRtWRVqHaPGfOrbY\nnrD71DLug8DWNhVFo4vaFJ0IcBRPwViZj7qkcIzRiJMUa9jxkUf3ygh9+ksDwfsQ\n8rruOzEoOkDRE5YjTxsJmHpqsJyywVjIOPU/VokCgYEA8Yj7EEpHEWJIBsIibxA9\nnTUfDapbFhSQio/2RMvQU7uGQCvV+dBzENN/UEwDK2wvR2L+hhby5KG+0eeipE4G\n6/8Tuf1XWW710iVtukE9hnrg/mJqicR4w5LYawK1zt//ObKme1Ayj4fql7/dgy8A\n+dnRtBG1sXNUX2zVFlkfVS0CgYEAxfgmyidmm9jEuGkc420pNWj46t9KqVitNLH8\n5hg06EloaNCgjzSo1viA/nYBhWuLaweU9/+nAPT8KgAQgUxIKLfErbcejH79yQjH\nR5SdyPZV58UBcz34kzk+kcptI5TnUIqX0Boj0fRumWYSDhrg97V0bRHbEj+zdWYs\nduxrQ8MCgYEA4uSG1FqyQAZPGuorZqGe/5rzPOcXAbr3vPJXqXC8lqvGBWooa7AB\nJ4FGS6vcHmJWV30LE/Ni4JuAobYy9p3FqtPHOCRgdcbibTJzzU+T+ExeJxlUc254\n819ypbO6DkglfZHxCk3f8S0AluTJtX3mMM8JS1qHj9aDH9Egqwm1gVECgYBJHqTF\nGdRuT5wpOLmwzorf7UuzBJJBBj3DLtJn8hzohuSHgjcrbZnG/LY4RkG9k8FE4OIG\nz2hRlCrnIGr4NsKYN3fvaalg3y7BZ/qi16OHrGSCXGNyuzrqtcQEeS3ibIcbWnVE\nKcN9Mrj+85JLn2XkWCMOff/aN6kC/aACtMPRnQKBgQCRy3+HRKVAMK6Je7/5NBQ1\nLHgiOTwm+ylW+XMDZleAaZCCi01qS/P9URFMec2EEyakK5Ex1GeC/WqiH2gAll/q\neTKVhxq7ImobD5uF0D4mp72plcJ2ugJbJMoTDAl3YYk0KOAI68AuTmJGHK9/CnP6\n6VB/JCL/ChrA2bCpIvlCBQ==\n-----END PRIVATE KEY-----\n",
+    "client_email": "twilio@grizzlybearllc.iam.gserviceaccount.com",
+    "client_id": "111653328846990616220",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/twilio%40grizzlybearllc.iam.gserviceaccount.com"
+}

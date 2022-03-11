@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "tsc --noEmit",
+    "test": "TZ=\"America/Chicago\" jest",
+    "test:build": "tsc",
     "start": "twilio-run --functions-folder dist/functions --assets-folder dist/assets",
     "deploy": "twilio-run deploy --functions-folder dist/functions --assets-folder dist/assets",
     "build": "tsc && npm run build:copy-assets",
@@ -18,12 +19,17 @@
     "googleapis": "^96.0.0",
     "lodash": "^4.17.21",
     "moment-timezone": "^0.5.34",
+    "ts-jest": "^27.1.3",
     "twilio": "^3.56"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
     "copyfiles": "^2.2.0",
+    "jest": "^27.5.1",
+    "ts-node": "^10.7.0",
     "twilio-run": "^3.4.1",
-    "typescript": "^3.8"
+    "typescript": "^4.6.2"
   },
   "engines": {
     "node": "12",

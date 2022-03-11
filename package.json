@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "TZ=\"America/Chicago\" jest",
-    "start": "twilio-run --functions-folder dist/functions --assets-folder dist/assets",
-    "deploy": "twilio-run deploy --functions-folder dist/functions --assets-folder dist/assets",
+    "start": "twilio-run",
+    "deploy": "twilio-run deploy",
+    "deploy:staging": "twilio-run deploy --environment=staging",
     "build": "tsc && npm run build:copy-assets",
     "build:copy-assets": "copyfiles src/assets/* src/assets/**/* --up 2 --exclude **/*.ts dist/assets/",
     "prestart": "npm run build",

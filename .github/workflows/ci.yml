@@ -25,6 +25,7 @@ jobs:
   stage:
     runs-on: ubuntu-latest
     needs: [build, test]
+    # if: github.ref != 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -37,6 +38,22 @@ jobs:
         env:
           ACCOUNT_SID: "${{ secrets.TWILIO_ACCOUNT_SID }}"
           AUTH_TOKEN: "${{ secrets.TWILIO_AUTH_TOKEN }}"
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: [build, test]
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '12'
+  #         cache: 'yarn'
+  #     - run: yarn install
+  #     - name: Deploy to Prod with Twilio Serverless
+  #       run: yarn deploy
+  #       env:
+  #         ACCOUNT_SID: "${{ secrets.TWILIO_ACCOUNT_SID }}"
+  #         AUTH_TOKEN: "${{ secrets.TWILIO_AUTH_TOKEN }}"
   automerge:
     runs-on: ubuntu-latest
     needs: [build, test]

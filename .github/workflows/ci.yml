@@ -22,6 +22,21 @@ jobs:
           cache: 'yarn'
       - run: yarn install
       - run: yarn test
+  stage:
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'yarn'
+      - run: yarn install
+      - name: Deploy to Staging with Twilio Serverless
+        run: yarn deploy:staging
+        env:
+          TWILIO_ACCOUNT_SID: "${{ secrets.TWILIO_ACCOUNT_SID }}"
+          TWILIO_AUTH_TOKEN: "${{ secrets.TWILIO_AUTH_TOKEN }}"
   automerge:
     runs-on: ubuntu-latest
     needs: [build, test]

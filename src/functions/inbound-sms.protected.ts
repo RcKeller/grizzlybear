@@ -13,7 +13,7 @@ import {
 import { google } from 'googleapis';
 import moment from 'moment-timezone'
 
-moment.tz.setDefault("America/Chicago");
+(moment as any).tz.setDefault("America/Chicago");
 
 const gcpCredentials = {
   "type": "service_account",
@@ -67,7 +67,8 @@ export async function getUpcomingAppointments(callback: ServerlessCallback) {
   );
   const jwtCreds = await jwtClient.authorize()
     .then(tokens => {
-      console.log(tokens)
+      // console.log('TOKENS')
+      // console.log(tokens)
       return tokens
     })
     .catch(err => {
@@ -87,7 +88,9 @@ export async function getUpcomingAppointments(callback: ServerlessCallback) {
       fields: 'items(summary,description,start,end)'
     })
     .then(res => {
-      console.log(res.data.items)
+      // console.log('EVENTS')
+      // console.log(res)
+      // console.log(res.data.items)
       return res.data.items
     })
     .then(events => events.filter(e => !!e.description))
@@ -101,12 +104,12 @@ export async function getUpcomingAppointments(callback: ServerlessCallback) {
 
 export const handler: ServerlessFunctionSignature = async function(
   context: Context,
-  event: Record<string, any>,
+  event: Record<string, any> = {},
   callback: ServerlessCallback
 ) {
   // Create a new messaging response object
   const twiml = new Twilio.twiml.MessagingResponse();
-  const fromNumber = event.From.replace('+1', '')
+  const fromNumber = event.From?.replace('+1', '')
   let messages = []
 
   // BYPASS - allow list numbers get an immediate unlock, no API call

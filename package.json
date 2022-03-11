@@ -1,5 +1,5 @@
 {
-  "name": "grizzlybear-api",
+  "name": "grizzlybear",
   "version": "1.0.0",
   "private": true,
   "engines": {
@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "TZ=\"America/Chicago\" jest",
-    "start": "twilio-run",
-    "deploy": "twilio-run deploy",
+    "start": "twilio-run --ngrok=\"\" --inspect=\"\"",
+    "deploy": "twilio-run deploy --environment=production",
     "deploy:staging": "twilio-run deploy --environment=staging",
     "build": "tsc && npm run build:copy-assets",
     "build:copy-assets": "copyfiles src/assets/* src/assets/**/* --up 2 --exclude **/*.ts dist/assets/",

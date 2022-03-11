@@ -28,7 +28,7 @@
 	// "logs": true 	/* Toggles request logging */,
 	// "ngrok": null 	/* Uses ngrok to create a public url. Pass a string to set the subdomain (requires a paid-for ngrok account). */,
 	// "outputFormat": "" 	/* Output the results in a different format */,
-	// "overrideExistingProject": false 	/* Deploys Serverless project to existing service if a naming conflict has been found. */,
+	"overrideExistingProject": true 	/* Deploys Serverless project to existing service if a naming conflict has been found. */,
 	// "port": "3000" 	/* Override default port of 3000 */,
 	// "production": false 	/* Promote build to the production environment (no domain suffix). Overrides environment flag */,
 	// "properties": null 	/* Specify the output properties you want to see. Works best on single types */,
